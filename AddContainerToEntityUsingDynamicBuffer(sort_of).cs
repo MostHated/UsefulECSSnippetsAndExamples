@@ -1,3 +1,7 @@
+    // Since you can't actually add a Native Container (Such as NativeList, NativeHashMap, NativeMultiHashMap, etc) into an IComponentData, this is the next best thing. 
+    // The below is how you create a Dynamic Buffer (DynamicBuffer which would be a struct derived from IBufferElementData) to an Entity that can act as an Array. It can hold anything that is blittable I believe. 
+    //Technically the dynamic buffer itself only holds a single value type but becomes an array because it essentially stacks (at least that is how I choose to believe that it works, lol).
+
     // This can just be its own new file, such as MyDataBufferComponent.cs or if you wanted you can add this code to another already created component
     
     // This limits the number of actual items that the buffer will contain. Keep it as low as you can while making sure you have enough,
