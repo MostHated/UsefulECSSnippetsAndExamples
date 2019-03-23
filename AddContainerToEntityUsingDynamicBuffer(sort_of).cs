@@ -1,9 +1,11 @@
+    //--------------------------------- Background Info --------------------------------------
     // Since you can't actually add a Native Container (Such as NativeList, NativeHashMap, NativeMultiHashMap, etc) into an IComponentData, this is the next best thing. 
     // The below is how you create a Dynamic Buffer (DynamicBuffer which would be a struct derived from IBufferElementData) to an Entity that can act as an Array. It can hold anything that is blittable I believe. 
     //Technically the dynamic buffer itself only holds a single value type but becomes an array because it essentially stacks (at least that is how I choose to believe that it works, lol).
+    //----------------------------------------------------------------------------------------
 
+    // ------------------------------- MyDataBufferComponent.cs ------------------------------
     // This can just be its own new file, such as MyDataBufferComponent.cs or if you wanted you can add this code to another already created component
-    
     // This limits the number of actual items that the buffer will contain. Keep it as low as you can while making sure you have enough,
     // it can grow but not get resized again unless you get rid of the one on the entity and create/add a new one
     [InternalBufferCapacity(3)]
@@ -12,9 +14,9 @@
         // This can be pretty much whatever, such as int, float, or a custom struct you have created which can contain additional data fields, as long as that struct is blittable and contains no containers
         public MyData mydata; 
     }
+    // ------------------------------- End MyDataBufferComponent.cs ---------------------------
     
-    // --------------------------------------------------
-    
+    // ------------------------------- MyProcessingSystem.cs ----------------------------------
     // Creates a new list of the type of your buffer (doesn't have to be a list, can be a single item)
     public List<MyDataBuffer> dataBufferList = new List<MyDataBuffer>(); 
 
@@ -43,3 +45,4 @@
             myBuffer.Add(dataBufferList[i]); 
         }
     }
+    // --------------------------- End MyProcessingSystem.cs ----------------------------------
